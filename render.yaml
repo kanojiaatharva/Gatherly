@@ -41,7 +41,7 @@ services:
     name: gatherly-frontend
     runtime: static
     rootDir: frontend
-    buildCommand: npm ci && npm run build
+    buildCommand: npm install && npm run build
     staticPublishPath: dist
     autoDeploy: true
     routes:
