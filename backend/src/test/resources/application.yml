@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: gatherly-api-test
+  datasource:
+    url: jdbc:h2:mem:gatherlytest;DB_CLOSE_DELAY=-1;MODE=MySQL
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: false
+    open-in-view: false
+  flyway:
+    enabled: false
+
+jwt:
+  secret: gatherly_test_secret_key_must_be_32_bytes_or_more_long_for_hmac_sha256
+  expiration-ms: 86400000
+
+ai:
+  provider: mock
+  api-key: test-key
+  model: test-model
+  base-url: http://localhost:8080
+  timeout-seconds: 25
+  rate-limit-per-minute: 15

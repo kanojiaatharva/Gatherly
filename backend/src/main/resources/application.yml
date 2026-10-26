@@ -1,0 +1,42 @@
+server:
+  port: ${PORT:${SERVER_PORT:8080}}
+  address: 0.0.0.0
+
+spring:
+  application:
+    name: gatherly-api
+  profiles:
+    default: local
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:${DATABASE_URL:jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:gatherly}?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC}}
+    username: ${DB_USERNAME:${SPRING_DATASOURCE_USERNAME:gatherly_app}}
+    password: ${DB_PASSWORD:${SPRING_DATASOURCE_PASSWORD:replace_me}}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+
+jwt:
+  secret: ${JWT_SECRET:gatherly_default_jwt_secret_key_needs_to_be_32_bytes_or_more_long}
+  expiration-ms: ${JWT_EXPIRATION_MS:86400000}
+
+ai:
+  provider: ${AI_PROVIDER:mock}
+  api-key: ${AI_API_KEY:}
+  model: ${AI_MODEL:gpt-4o-mini}
+  base-url: ${AI_BASE_URL:https://api.openai.com/v1}
+  timeout-seconds: ${AI_TIMEOUT_SECONDS:25}
+  rate-limit-per-minute: ${AI_RATE_LIMIT_PER_MINUTE:15}
+
+security:
+  cors:
+    allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:5173,http://localhost:3000,http://127.0.0.1:5173}
+  auth:
+    rate-limit-per-minute: ${AUTH_RATE_LIMIT_PER_MINUTE:60}
+

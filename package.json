@@ -1,0 +1,12 @@
+{
+  "name": "gatherly",
+  "private": true,
+  "scripts": {
+    "test": "npm --prefix frontend test",
+    "test:backend": "cd backend && mvn test",
+    "test:all": "npm test && npm run test:backend",
+    "lint": "npm --prefix frontend run lint",
+    "build": "npm --prefix frontend run build",
+    "build:backend": "cd backend && mvn clean package -DskipTests"
+  }
+}
