@@ -4,7 +4,7 @@ services:
   # =====================================================================
   - type: web
     name: gatherly-backend
-    env: docker
+    runtime: docker
     dockerfilePath: ./backend/Dockerfile
     dockerContext: ./backend
     plan: free
@@ -39,9 +39,10 @@ services:
   # =====================================================================
   - type: web
     name: gatherly-frontend
-    env: static
-    buildCommand: cd frontend && npm ci && npm run build
-    staticPublishPath: ./frontend/dist
+    runtime: static
+    rootDir: frontend
+    buildCommand: npm ci && npm run build
+    staticPublishPath: dist
     autoDeploy: true
     routes:
       - type: rewrite
@@ -62,3 +63,4 @@ services:
         value: 20.18.0
       - key: VITE_API_BASE_URL
         value: https://gatherly-backend.onrender.com/api
+
